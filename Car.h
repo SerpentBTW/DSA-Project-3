@@ -15,7 +15,7 @@ private:
     int year;
     int price;
     int mileage;
-    int mpg;
+    string mpg;
 
     // RECOMMENDED
     string engine;
@@ -29,13 +29,13 @@ private:
     bool personalUseOnly;
 
 public:
-    Car(string make,string model,int year,int price,int mileage,int mpg,string engine,string transmission,string drivetrain,string fuelType,string sellerName,string sellerRating,bool accidents,bool oneOwner,bool personalUseOnly);
+    Car(string make,string model,int year,int price,int mileage,string mpg,string engine,string transmission,string drivetrain,string fuelType,string sellerName,string sellerRating,bool accidents,bool oneOwner,bool personalUseOnly);
     string getMake();
     string getModel();
     int getYear();
     int getPrice();
     int getMileage();
-    int getMpg();
+    string getMpg();
     string getEngine();
     string getTransmission();
     string getDrivetrain();

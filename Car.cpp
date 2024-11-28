@@ -4,7 +4,7 @@
 
 #include "Car.h"
 
-Car::Car(string make, string model, int year, int price, int mileage, int mpg, string engine, string transmission,
+Car::Car(string make, string model, int year, int price, int mileage, string mpg, string engine, string transmission,
          string drivetrain, string fuelType, string sellerName, string sellerRating, bool accidents, bool oneOwner,
          bool personalUseOnly) {
     this->make = make;
@@ -44,7 +44,7 @@ int Car::getMileage() {
     return mileage;
 }
 
-int Car::getMpg() {
+string Car::getMpg() {
     return mpg;
 }
 
