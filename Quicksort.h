@@ -7,12 +7,14 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include <variant>
 
 #include "Car.h"
 #include "GetVal.h"
 
 using namespace std;
 
-void Quicksort(vector<Car>& list, string spec);
+void Quicksort(vector<Car*>& list, string spec);
+void QuicksortRecursive(vector<Car*>& list, int start, int end, string spec);
+int Partition(vector<Car*>& list, int start, int end, string spec);
+void FindMedianVal(vector<Car*>& list, int start, int end, string spec, int& pivot);
 
