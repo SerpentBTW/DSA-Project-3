@@ -16,6 +16,7 @@ private:
     int price;
     int mileage;
     string mpg;
+    int mpgHigh;
 
     // RECOMMENDED
     string engine;
@@ -36,6 +37,7 @@ public:
     int getPrice();
     int getMileage();
     string getMpg();
+    int getMpgHigh();
     string getEngine();
     string getTransmission();
     string getDrivetrain();

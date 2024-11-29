@@ -12,7 +12,7 @@ int getVal(Car* car, string& spec) {
     else if (spec == "mileage")
         return car->getMileage();
     else if (spec == "mpg")
-        return car->getMpg();
+        return car->getMpgHigh();
     else
         return -1;
 }

@@ -22,6 +22,18 @@ Car::Car(string make, string model, int year, int price, int mileage, string mpg
     this->accidents = accidents;
     this->oneOwner = oneOwner;
     this->personalUseOnly = personalUseOnly;
+
+    string mpgHighString;
+    bool afterDash = false;
+    for (auto c : mpg) {
+        if (afterDash) {
+            mpgHighString.push_back(c);
+        }
+        if (c == '-') {
+            afterDash = true;
+        }
+    }
+    this->mpgHigh = stoi(mpgHighString);
 }
 
 string Car::getMake() {
@@ -46,6 +58,10 @@ int Car::getMileage() {
 
 string Car::getMpg() {
     return mpg;
+}
+
+int Car::getMpgHigh() {
+    return mpgHigh;
 }
 
 string Car::getEngine() {
