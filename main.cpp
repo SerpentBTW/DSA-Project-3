@@ -81,5 +81,37 @@ int main(){
         dataSet.push_back(carConstruct);
     }
     cout << dataSet.size() << endl;
+
+
+    bool run = true;
+    int numLines = 0;
+    int algoInput = 0;
+    string spec;
+    while (run) {
+        cout << "How many lines would you like to output? (Input number)" << endl;
+        cin >> numLines;
+        cout << "Which algorithm would you like to perform? (Input number)" << endl;
+        cout << "1. Quick sort" << endl;
+        cout << "2. Merge sort" << endl;
+        cout << "3. Radix sort" << endl;
+        cin >> algoInput;
+        cout << "What spec would you like to filter by? (Input word)" << endl;
+        cin >> spec;
+        if (algoInput == 1) {
+            Quicksort(dataSet, spec);
+        }
+        else if (algoInput == 2) {
+            //Merge sort
+        }
+        else if (algoInput == 3) {
+            //Radix sort
+        }
+        else {
+            run = false;
+        }
+        for (int i = 0; i < numLines; i++) {
+            cout << dataSet[i] << endl;
+        }
+    }
     return 0;
 }
