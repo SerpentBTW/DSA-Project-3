@@ -5,6 +5,7 @@
 #include <vector>
 #include "Car.h"
 #include "Quicksort.h"
+#include "ShellSort.h"
 using namespace std;
 
 
@@ -12,25 +13,22 @@ int main(){
     // List for testing purposes;
     // 3 2 5 0 1 8 7 6 9 4
     vector<Car*> Testlist;
-    Testlist.emplace_back(new Car("make", "model", 2024, 3, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
-    Testlist.emplace_back(new Car("make", "model", 2024, 2, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
-    Testlist.emplace_back(new Car("make", "model", 2024, 5, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
-    Testlist.emplace_back(new Car("make", "model", 2024, 0, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
-    Testlist.emplace_back(new Car("make", "model", 2024, 1, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
-    Testlist.emplace_back(new Car("make", "model", 2024, 8, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
-    Testlist.emplace_back(new Car("make", "model", 2024, 7, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
-    Testlist.emplace_back(new Car("make", "model", 2024, 6, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
-    Testlist.emplace_back(new Car("make", "model", 2024, 9, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
-    Testlist.emplace_back(new Car("make", "model", 2024, 4, 10, "10-20", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 3, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 2, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 5, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 0, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 1, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 8, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 7, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 6, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 9, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
+    Testlist.emplace_back(new Car("make", "model", 2024, 4, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
 
-    Quicksort(Testlist, "price");
+    ShellSort(Testlist, "price");
 
     for (auto c : Testlist) {
-        cout << c->getMpgHigh() << endl;
+        cout << c->getPrice() << endl;
     }
-
-
-
 
 
     string make,model,year,price,mileage,mpg,engine,transmission,drivetrain,fuelType,sellerName,sellerRating,accidents,oneOwner,personalUseOnly;
@@ -38,7 +36,7 @@ int main(){
     string exterior_color, interior_color, driver_rating, driver_reviews, price_drop;
 
     vector<Car*> dataSet;
-    ifstream in("/Users/tyler/Documents/Code/DSA-Project-3/data.csv", ios::in);
+    ifstream in("data.csv", ios::in);
     string row;
     getline(in, row);
 
@@ -76,12 +74,16 @@ int main(){
         if(personalUseOnly == "1"){
             personalUseBool = true;
         }
-        Car* carConstruct = new Car(make,model,stoi(year),stoi(price),stoi(mileage),mpg,engine,transmission,drivetrain,fuelType,sellerName,sellerRating,accidentBool,oneOwnerBool,personalUseBool);
-        dataSet.push_back(carConstruct);
+        try {
+            Car *carConstruct = new Car(make, model, stoi(year), stoi(price), stoi(mileage), mpg, engine, transmission, drivetrain,
+                                        fuelType, sellerName, sellerRating, accidentBool, oneOwnerBool, personalUseBool);
+            dataSet.push_back(carConstruct);
+        }
+        catch(std::invalid_argument){}
     }
     cout << dataSet.size() << endl;
 
-
+/*
     bool run = true;
     int numLines = 0;
     int algoInput = 0;
@@ -112,5 +114,6 @@ int main(){
             cout << dataSet[i] << endl;
         }
     }
+    */
     return 0;
 }
