@@ -12,9 +12,9 @@ private:
     // REQUIRED
     string make;
     string model;
-    int year;
-    int price;
-    int mileage;
+    int year; //Sort
+    int price; //Sort
+    int mileage; //Sort
     string mpg;
     int mpgHigh;
 
