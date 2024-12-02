@@ -23,17 +23,39 @@ Car::Car(string make, string model, int year, int price, int mileage, string mpg
     this->oneOwner = oneOwner;
     this->personalUseOnly = personalUseOnly;
 
+    // Ideally stores second number in mpg string (##-##) as mpgHigh.
+    // Handles edge cases where mpg in incorrect form.
     string mpgHighString;
+    string firstNum;
     bool afterDash = false;
+    bool useFirstNum = true;
     for (auto c : mpg) {
         if (afterDash) {
+            if (c < 48 || c > 57) {
+                useFirstNum = true;
+                break;
+            }
             mpgHighString.push_back(c);
+        }
+        if (!afterDash) {
+            firstNum.push_back(c);
         }
         if (c == '-') {
             afterDash = true;
+            useFirstNum = false;
         }
     }
-    this->mpgHigh = stoi(mpgHighString);
+    try {
+        if (useFirstNum) {
+            this->mpgHigh = stoi(firstNum);
+        }
+        else {
+            this->mpgHigh = stoi(mpgHighString);
+        }
+    } catch (const exception& e){
+        this->mpgHigh = -1;
+        cerr << e.what() << endl;
+    }
 }
 
 string Car::getMake() {
