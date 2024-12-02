@@ -10,4 +10,6 @@ add_executable(DSA_Project_3
         Quicksort.cpp
         Quicksort.h
         GetVal.cpp
+        ShellSort.cpp
+        ShellSort.h
 )
