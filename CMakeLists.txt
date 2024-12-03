@@ -12,4 +12,6 @@ add_executable(DSA_Project_3
         GetVal.cpp
         ShellSort.cpp
         ShellSort.h
+        HeapSort.cpp
+        Heapsort.h
 )
