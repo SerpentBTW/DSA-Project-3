@@ -12,6 +12,7 @@ using namespace std;
 int main(){
     // List for testing purposes;
     // 3 2 5 0 1 8 7 6 9 4
+    /*
     vector<Car*> Testlist;
     Testlist.emplace_back(new Car("make", "model", 2024, 3, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
     Testlist.emplace_back(new Car("make", "model", 2024, 2, 10, "10", "engine", "transmission", "drivetrain", "fuelType", "sellerName", "sellerRating", 0, 0, 0));
@@ -29,6 +30,7 @@ int main(){
     for (auto c : Testlist) {
         cout << c->getPrice() << endl;
     }
+    */
 
 
     string make,model,year,price,mileage,mpg,engine,transmission,drivetrain,fuelType,sellerName,sellerRating,accidents,oneOwner,personalUseOnly;
