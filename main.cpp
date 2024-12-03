@@ -83,37 +83,59 @@ int main(){
     }
     cout << dataSet.size() << endl;
 
-/*
+
     bool run = true;
     int numLines = 0;
     int algoInput = 0;
+    int specInt = 0;
     string spec;
     while (run) {
         cout << "How many lines would you like to output? (Input number)" << endl;
         cin >> numLines;
+
         cout << "Which algorithm would you like to perform? (Input number)" << endl;
         cout << "1. Quick sort" << endl;
-        cout << "2. Merge sort" << endl;
-        cout << "3. Radix sort" << endl;
+        cout << "2. Shell sort" << endl;
+        cout << "3. Heap sort" << endl;
         cin >> algoInput;
-        cout << "What spec would you like to filter by? (Input word)" << endl;
-        cin >> spec;
+
+        cout << "What spec would you like to filter by? (Input number)" << endl;
+        cout << "1. Year" << endl;
+        cout << "2. Price" << endl;
+        cout << "3. Mileage" << endl;
+        cout << "4. MPG" << endl;
+        cin >> specInt;
+        //Converting ui selection to string for sorting parameters
+        if (specInt == 1) {
+            spec = "year";
+        }
+        else if (specInt == 2) {
+            spec = "price";
+        }
+        else if (specInt == 3) {
+            spec = "mileage";
+        }
+        else if (specInt == 4) {
+            spec = "mpg";
+        }
+
         if (algoInput == 1) {
             Quicksort(dataSet, spec);
         }
         else if (algoInput == 2) {
-            //Merge sort
+            ShellSort(dataSet, spec);
         }
         else if (algoInput == 3) {
             //Radix sort
         }
         else {
+            cout << "Invalid input";
             run = false;
         }
         for (int i = 0; i < numLines; i++) {
-            cout << dataSet[i] << endl;
+            cout << dataSet[i]->getPrice() << endl;
         }
     }
-    */
+
     return 0;
 }
