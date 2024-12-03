@@ -29,42 +29,34 @@ int Partition(vector<Car*>& list, int start, int end, string spec) {
         FindMedianVal(list, start, end, spec, pivot);
     }
 
-    int currentIndex = start - 1;
-    int swapIndex = start - 1;
+    // Move pivot to the end for simplicity
+    swap(list[pivot], list[end]);
 
     // Loops through entire list
-    while (currentIndex < end) {
-        currentIndex++;
-        // If the current value is <= to the pivot value
-        if (getVal(list[currentIndex],spec) <= getVal(list[pivot],spec)) {
+    Car* pivotValue = list[end];
+    int swapIndex = start;
+    for (int i = start; i < end; ++i) {
+        if (getVal(list[i], spec) <= getVal(pivotValue, spec)) {
+            swap(list[i], list[swapIndex]);
             swapIndex++;
-            // Swap if the current and swap indices are different
-            if (currentIndex > swapIndex) {
-                Car* temp = list[swapIndex];
-                list[swapIndex] = list[currentIndex];
-                list[currentIndex] = temp;
-            }
         }
     }
 
     // Swaps the pivot into the correct position after rest of list placed accordingly
-    Car* temp = list[swapIndex];
-    list[swapIndex] = list[pivot];
-    list[pivot] = temp;
+    swap(list[swapIndex], list[end]);
 
     return swapIndex;
-
 }
 
 // Finds the median value of the first, middle, and last elements of the list.
 // This helps keep the Quicksort algorithm closer to O(NlogN) as it will try to use a more centralized pivot.
 void FindMedianVal(vector<Car*>& list, int start, int end, string spec, int& pivot) {
     int firstIndex = start;
-    int middleIndex = end/2;
+    int middleIndex = start + (end - start) / 2;
     int lastIndex = end;
 
     int firstVal = getVal(list[start],spec);
-    int middleVal = getVal(list[end/2],spec);
+    int middleVal = getVal(list[middleIndex], spec);
     int lastVal = getVal(list[end],spec);
 
     // O(1) logic checks to determine middle value
