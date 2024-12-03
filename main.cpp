@@ -74,7 +74,7 @@ int main(){
         cout << "Welcome to MotorMatch" << endl;
         cout << "---------------------------------------------------------" << endl;
 
-        cout << "What spec would you like to filter by? (Input number)" << endl;
+        cout << "What parameter would you like to sort by? (Input number)" << endl;
         cout << "1. Year" << endl;
         cout << "2. Price" << endl;
         cout << "3. Mileage" << endl;
@@ -100,23 +100,20 @@ int main(){
             cout << "Invalid input, rerun program with compatible inputs.";
             return 0;
         }
-
-        Quicksort(quickData, spec);
-
-        ShellSort(shellData, spec);
-
-        HeapSort(heapData, spec);
+        if (specInt == 1 || specInt == 4) {
+            ShellSort(shellData, spec);
+            HeapSort(heapData, spec);
+        }
+        else {
+            Quicksort(quickData, spec);
+            ShellSort(shellData, spec);
+            HeapSort(heapData, spec);
+        }
 
         for (int i = 0; i < numLines; i++) {
-            if (specInt == 1)
-                cout << dataSet[i]->getYear() << endl;
-            if (specInt == 2)
-                cout << dataSet[i]->getPrice() << endl;
-            if (specInt == 3)
-                cout << dataSet[i]->getMileage() << endl;
-            if (specInt == 4)
-                cout << dataSet[i]->getMpgHigh() << endl;
+                cout << dataSet[i]->getYear() << " | " << dataSet[i]->getMake() <<" | "<<dataSet[i]->getModel() <<" | "<<"$"<<dataSet[i]->getPrice() <<" | "<<dataSet[i]->getMileage()<<" miles"<<" | "<<dataSet[i]->getMpg()<<"mpg"<<endl;
         }
+
 
     for(auto d : dataSet){
         delete d;
