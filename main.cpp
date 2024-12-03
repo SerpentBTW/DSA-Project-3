@@ -100,6 +100,7 @@ int main(){
             cout << "Invalid input, rerun program with compatible inputs.";
             return 0;
         }
+        //Skip quick sort for year and mpg
         if (specInt == 1 || specInt == 4) {
             ShellSort(shellData, spec);
             HeapSort(heapData, spec);
@@ -109,10 +110,46 @@ int main(){
             ShellSort(shellData, spec);
             HeapSort(heapData, spec);
         }
-
-        for (int i = 0; i < numLines; i++) {
-                cout << dataSet[i]->getYear() << " | " << dataSet[i]->getMake() <<" | "<<dataSet[i]->getModel() <<" | "<<"$"<<dataSet[i]->getPrice() <<" | "<<dataSet[i]->getMileage()<<" miles"<<" | "<<dataSet[i]->getMpg()<<"mpg"<<endl;
+        //Print Shell and Heap if year or mpg selected
+        if (specInt == 1 || specInt == 4) {
+            //Print Shell sort
+            for (int i = 0; i < numLines; i++) {
+                cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() << " | " << shellData[i]->getModel()
+                     << " | " << "$" << shellData[i]->getPrice() << " | " << shellData[i]->getMileage() << " miles" << " | "
+                     << shellData[i]->getMpg() << "mpg" << endl;
+            }
+            cout << "-----------------------------------------------" << endl;
+            //Print Heap sort
+            for (int i = 0; i < numLines; i++) {
+                cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() << " | " << heapData[i]->getModel()
+                     << " | " << "$" << heapData[i]->getPrice() << " | " << heapData[i]->getMileage() << " miles" << " | "
+                     << heapData[i]->getMpg() << "mpg" << endl;
+            }
         }
+        //Print all 3 sorts
+        else {
+            //Print Quick sort
+            for (int i = 0; i < numLines; i++) {
+                cout << quickData[i]->getYear() << " | " << quickData[i]->getMake() << " | " << quickData[i]->getModel()
+                     << " | " << "$" << quickData[i]->getPrice() << " | " << quickData[i]->getMileage() << " miles" << " | "
+                     << quickData[i]->getMpg() << "mpg" << endl;
+            }
+            cout << "-----------------------------------------------" << endl;
+            //Print Shell sort
+            for (int i = 0; i < numLines; i++) {
+                cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() << " | " << shellData[i]->getModel()
+                     << " | " << "$" << shellData[i]->getPrice() << " | " << shellData[i]->getMileage() << " miles" << " | "
+                     << shellData[i]->getMpg() << "mpg" << endl;
+            }
+            cout << "-----------------------------------------------" << endl;
+            //Print Heap sort
+            for (int i = 0; i < numLines; i++) {
+                cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() << " | " << heapData[i]->getModel()
+                     << " | " << "$" << heapData[i]->getPrice() << " | " << heapData[i]->getMileage() << " miles" << " | "
+                     << heapData[i]->getMpg() << "mpg" << endl;
+            }
+        }
+
 
 
     for(auto d : dataSet){
