@@ -33,9 +33,10 @@ int Partition(vector<Car*>& list, int start, int end, string spec) {
     swap(list[pivot], list[end]);
 
     // Loops through entire list
+    Car* pivotValue = list[end];
     int swapIndex = start;
     for (int i = start; i < end; ++i) {
-        if (getVal(list[i], spec) <= getVal(list[pivot], spec)) {
+        if (getVal(list[i], spec) <= getVal(pivotValue, spec)) {
             swap(list[i], list[swapIndex]);
             swapIndex++;
         }
@@ -55,7 +56,7 @@ void FindMedianVal(vector<Car*>& list, int start, int end, string spec, int& piv
     int lastIndex = end;
 
     int firstVal = getVal(list[start],spec);
-    int middleVal = getVal(list[end/2],spec);
+    int middleVal = getVal(list[middleIndex], spec);
     int lastVal = getVal(list[end],spec);
 
     // O(1) logic checks to determine middle value
