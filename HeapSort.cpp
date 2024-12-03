@@ -4,6 +4,7 @@
 #include "HeapSort.h"
 #include "GetVal.h"
 
+//Heapify function
 void Heapify(vector<Car*>& list, int n, int i, string& spec) {
     int largest = i;
     int left = 2 * i + 1;
@@ -23,6 +24,7 @@ void Heapify(vector<Car*>& list, int n, int i, string& spec) {
     }
 }
 
+//Heap sort function
 void HeapSort(vector<Car*>& list, string spec) {
     int n = list.size();
 
