@@ -6,6 +6,7 @@
 #include "Car.h"
 #include "Quicksort.h"
 #include "ShellSort.h"
+#include "Heapsort.h"
 using namespace std;
 
 
@@ -106,7 +107,7 @@ int main(){
             ShellSort(dataSet, spec);
         }
         else if (algoInput == 3) {
-            //Radix sort
+            HeapSort(dataSet, spec);
         }
         else {
             cout << "Invalid input, rerun program with compatible inputs.";
