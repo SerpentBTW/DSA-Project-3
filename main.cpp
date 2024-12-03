@@ -113,7 +113,14 @@ int main(){
             return 0;
         }
         for (int i = 0; i < numLines; i++) {
-            cout << dataSet[i]->getYear() << endl;
+            if (specInt == 1)
+                cout << dataSet[i]->getYear() << endl;
+            if (specInt == 2)
+                cout << dataSet[i]->getPrice() << endl;
+            if (specInt == 3)
+                cout << dataSet[i]->getMileage() << endl;
+            if (specInt == 4)
+                cout << dataSet[i]->getMpgHigh() << endl;
         }
 
     for(auto d : dataSet){
