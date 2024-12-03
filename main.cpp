@@ -62,19 +62,17 @@ int main(){
         catch(std::invalid_argument){}
     }
 
+    vector<Car*> quickData(dataSet);
+    vector<Car*> shellData(dataSet);
+    vector<Car*> heapData(dataSet);
+
 
     int numLines = 0;
-    int algoInput = 0;
     int specInt = 0;
     string spec;
-        cout << "How many lines would you like to output? (Input number)" << endl;
-        cin >> numLines;
 
-        cout << "Which algorithm would you like to perform? (Input number)" << endl;
-        cout << "1. Quick sort" << endl;
-        cout << "2. Shell sort" << endl;
-        cout << "3. Heap sort" << endl;
-        cin >> algoInput;
+        cout << "Welcome to MotorMatch" << endl;
+        cout << "---------------------------------------------------------" << endl;
 
         cout << "What spec would you like to filter by? (Input number)" << endl;
         cout << "1. Year" << endl;
@@ -82,6 +80,9 @@ int main(){
         cout << "3. Mileage" << endl;
         cout << "4. MPG" << endl;
         cin >> specInt;
+
+        cout << "How many lines would you like to output? (Input number)" << endl;
+        cin >> numLines;
         //Converting ui selection to string for sorting parameters
         if (specInt == 1) {
             spec = "year";
@@ -100,19 +101,12 @@ int main(){
             return 0;
         }
 
-        if (algoInput == 1) {
-            Quicksort(dataSet, spec);
-        }
-        else if (algoInput == 2) {
-            ShellSort(dataSet, spec);
-        }
-        else if (algoInput == 3) {
-            HeapSort(dataSet, spec);
-        }
-        else {
-            cout << "Invalid input, rerun program with compatible inputs.";
-            return 0;
-        }
+        Quicksort(quickData, spec);
+
+        ShellSort(shellData, spec);
+
+        HeapSort(heapData, spec);
+
         for (int i = 0; i < numLines; i++) {
             if (specInt == 1)
                 cout << dataSet[i]->getYear() << endl;
