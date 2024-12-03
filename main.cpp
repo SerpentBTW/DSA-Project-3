@@ -1,12 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <chrono>
 #include <string>
 #include <vector>
 #include "Car.h"
 #include "Quicksort.h"
 #include "ShellSort.h"
-#include "Heapsort.h"
+#include "HeapSort.h"
 using namespace std;
 
 
@@ -54,13 +55,11 @@ int main(){
         if(personalUseOnly == "1"){
             personalUseBool = true;
         }
-        try {
-            Car *carConstruct = new Car(make, model, stoi(year), stoi(price), stoi(mileage), mpg, engine, transmission, drivetrain,
-                                        fuelType, sellerName, sellerRating, accidentBool, oneOwnerBool, personalUseBool);
-            dataSet.push_back(carConstruct);
+        Car *carConstruct = new Car(make, model, stoi(year), stoi(price), stoi(mileage), mpg, engine, transmission, drivetrain,
+                                    fuelType, sellerName, sellerRating, accidentBool, oneOwnerBool, personalUseBool);
+        dataSet.push_back(carConstruct);
+
         }
-        catch(std::invalid_argument){}
-    }
 
     vector<Car*> quickData(dataSet);
     vector<Car*> shellData(dataSet);
@@ -101,22 +100,55 @@ int main(){
             return 0;
         }
         if (specInt == 1 || specInt == 4) {
+            auto ShellStart = std::chrono::high_resolution_clock::now();
             ShellSort(shellData, spec);
+            auto ShellStop = std::chrono::high_resolution_clock::now();
+            auto HeapStart = std::chrono::high_resolution_clock::now();
             HeapSort(heapData, spec);
+            auto HeapStop = std::chrono::high_resolution_clock::now();
+
+            auto ShellDuration = std::chrono::duration_cast<std::chrono::milliseconds>(ShellStop - ShellStart);
+            auto HeapDuration = std::chrono::duration_cast<std::chrono::milliseconds>(HeapStop - HeapStart);
+            for (int i = 0; i < numLines; i++) {
+                cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() <<" | "<<shellData[i]->getModel() <<" | "<<"$"<<shellData[i]->getPrice() <<" | "<<shellData[i]->getMileage()<<" miles"<<" | "<<shellData[i]->getMpg()<<"mpg"<<endl;
+            }
+            cout << "-----------------------------------------------------------------------" << endl;
+            for (int i = 0; i < numLines; i++) {
+                cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() <<" | "<<heapData[i]->getModel() <<" | "<<"$"<<heapData[i]->getPrice() <<" | "<<heapData[i]->getMileage()<<" miles"<<" | "<<heapData[i]->getMpg()<<"mpg"<<endl;
+            }
+            cout << "-----------------------------------------------------------------------" << endl;
+            cout << ShellDuration.count() << endl;
+            cout << HeapDuration.count() << endl;
         }
         else {
+            auto QuickStart = std::chrono::high_resolution_clock::now();
             Quicksort(quickData, spec);
+            auto QuickStop = std::chrono::high_resolution_clock::now();
+            auto ShellStart = std::chrono::high_resolution_clock::now();
             ShellSort(shellData, spec);
+            auto ShellStop = std::chrono::high_resolution_clock::now();
+            auto HeapStart = std::chrono::high_resolution_clock::now();
             HeapSort(heapData, spec);
+            auto HeapStop = std::chrono::high_resolution_clock::now();
+
+            auto QuickDuration = std::chrono::duration_cast<std::chrono::milliseconds>(QuickStop - QuickStart);
+            auto ShellDuration = std::chrono::duration_cast<std::chrono::milliseconds>(ShellStop - ShellStart);
+            auto HeapDuration = std::chrono::duration_cast<std::chrono::milliseconds>(HeapStop - HeapStart);
+            for (int i = 0; i < numLines; i++) {
+                cout << quickData[i]->getYear() << " | " << quickData[i]->getMake() <<" | "<<quickData[i]->getModel() <<" | "<<"$"<<quickData[i]->getPrice() <<" | "<<quickData[i]->getMileage()<<" miles"<<" | "<<quickData[i]->getMpg()<<"mpg"<<endl;
+            }
+            cout << "-----------------------------------------------------------------------" << endl;
+            for (int i = 0; i < numLines; i++) {
+                cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() <<" | "<<shellData[i]->getModel() <<" | "<<"$"<<shellData[i]->getPrice() <<" | "<<shellData[i]->getMileage()<<" miles"<<" | "<<shellData[i]->getMpg()<<"mpg"<<endl;
+            }
+            cout << "-----------------------------------------------------------------------" << endl;
+            for (int i = 0; i < numLines; i++) {
+                cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() <<" | "<<heapData[i]->getModel() <<" | "<<"$"<<heapData[i]->getPrice() <<" | "<<heapData[i]->getMileage()<<" miles"<<" | "<<heapData[i]->getMpg()<<"mpg"<<endl;
+            }
+            cout << "-----------------------------------------------------------------------" << endl;
+            cout << QuickDuration.count() << endl;
+            cout << ShellDuration.count() << endl;
+            cout << HeapDuration.count() << endl;
         }
-
-        for (int i = 0; i < numLines; i++) {
-                cout << dataSet[i]->getYear() << " | " << dataSet[i]->getMake() <<" | "<<dataSet[i]->getModel() <<" | "<<"$"<<dataSet[i]->getPrice() <<" | "<<dataSet[i]->getMileage()<<" miles"<<" | "<<dataSet[i]->getMpg()<<"mpg"<<endl;
-        }
-
-
-    for(auto d : dataSet){
-        delete d;
-    }
     return 0;
 }
