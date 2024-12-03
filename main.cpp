@@ -117,8 +117,8 @@ int main(){
                 cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() <<" | "<<heapData[i]->getModel() <<" | "<<"$"<<heapData[i]->getPrice() <<" | "<<heapData[i]->getMileage()<<" miles"<<" | "<<heapData[i]->getMpg()<<"mpg"<<endl;
             }
             cout << "-----------------------------------------------------------------------" << endl;
-            cout << ShellDuration.count() << endl;
-            cout << HeapDuration.count() << endl;
+            cout << "Shell Sort Execution Time (in Milliseconds): "<< ShellDuration.count() << endl;
+            cout << "Heap Sort Execution Time (in Milliseconds): "<< HeapDuration.count() << endl;
         }
         else {
             auto QuickStart = std::chrono::high_resolution_clock::now();
@@ -146,9 +146,9 @@ int main(){
                 cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() <<" | "<<heapData[i]->getModel() <<" | "<<"$"<<heapData[i]->getPrice() <<" | "<<heapData[i]->getMileage()<<" miles"<<" | "<<heapData[i]->getMpg()<<"mpg"<<endl;
             }
             cout << "-----------------------------------------------------------------------" << endl;
-            cout << QuickDuration.count() << endl;
-            cout << ShellDuration.count() << endl;
-            cout << HeapDuration.count() << endl;
+            cout << "Quick Sort Execution Time (in Milliseconds): "<< QuickDuration.count() << endl;
+            cout << "Shell Sort Execution Time (in Milliseconds): "<< ShellDuration.count() << endl;
+            cout << "Heap Sort Execution Time (in Milliseconds): "<< HeapDuration.count() << endl;
         }
     return 0;
 }
