@@ -98,7 +98,7 @@ int main(){
         }
         cout << "How many lines would you like to output? (Input number)" << endl;
         cin >> numLines;
-        if(numLines <= 0){
+        if(numLines <= 0 || numLines > 229402){
             cout << "Invalid input, rerun program with compatible inputs.";
             return 0;
         }
