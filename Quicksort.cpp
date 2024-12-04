@@ -4,6 +4,8 @@
 
 #include "Quicksort.h"
 #include "GetVal.h"
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -11,62 +13,47 @@ void Quicksort(vector<Car*>& list, string spec) {
     QuicksortRecursive(list, 0, list.size()-1, spec);
 }
 
-
 // Recursive Quicksort function
 void QuicksortRecursive(vector<Car*>& list, int start, int end, string spec) {
     if (start < end) {
-        int pivot = Partition(list, start, end, spec);
-        QuicksortRecursive(list, start, pivot - 1, spec);
-        QuicksortRecursive(list, pivot + 1, end, spec);
+        int LTEnd;
+        int GTStart;
+        ThreeWayPartition(list, start, end, spec, LTEnd, GTStart);
+
+        QuicksortRecursive(list, start, LTEnd, spec);
+        QuicksortRecursive(list, GTStart, end, spec);
     }
 }
 
-// Swaps values during the sort and reassigns pivot.
-int Partition(vector<Car*>& list, int start, int end, string spec) {
-    // Pivot is determined using Median of Three method to hopefully increase the chances of an appropriate center value.
-    int pivot = start;
-    if (end - start >= 2) {
-        FindMedianVal(list, start, end, spec, pivot);
-    }
+// Uses 3-way partitioning to handle sorts with large amounts of repeated values (ex. Year, MPG)
+void ThreeWayPartition(vector<Car*>& list, int start, int end, string spec, int& LTEnd, int& GTStart) {
+    // Select the first element to be the pivot.
+    // Determine values less than, current, greater than pivot
+    Car* pivotValue = list[start];
+    int LTPivot = start;
+    int currIndex = start;
+    int GTPivot = end;
 
-    // Move pivot to the end for simplicity
-    swap(list[pivot], list[end]);
-
-    // Loops through entire list
-    Car* pivotValue = list[end];
-    int swapIndex = start;
-    for (int i = start; i < end; ++i) {
-        if (getVal(list[i], spec) <= getVal(pivotValue, spec)) {
-            swap(list[i], list[swapIndex]);
-            swapIndex++;
+    // Swaps elements based on their relationship with pivot
+    while (currIndex <= GTPivot) {
+        // Less than pivot
+        if (getVal(list[currIndex], spec) - getVal(pivotValue, spec) < 0) {
+            swap(list[LTPivot], list[currIndex]);
+            LTPivot++;
+            currIndex++;
+        }
+        // Greater than pivot
+        else if (getVal(list[currIndex], spec) - getVal(pivotValue, spec) > 0) {
+            swap(list[currIndex], list[GTPivot]);
+            GTPivot--;
+        }
+        // Equal to pivot
+        else {
+            currIndex++;
         }
     }
 
-    // Swaps the pivot into the correct position after rest of list placed accordingly
-    swap(list[swapIndex], list[end]);
-
-    return swapIndex;
-}
-
-// Finds the median value of the first, middle, and last elements of the list.
-// This helps keep the Quicksort algorithm closer to O(NlogN) as it will try to use a more centralized pivot.
-void FindMedianVal(vector<Car*>& list, int start, int end, string spec, int& pivot) {
-    int firstIndex = start;
-    int middleIndex = start + (end - start) / 2;
-    int lastIndex = end;
-
-    int firstVal = getVal(list[start],spec);
-    int middleVal = getVal(list[middleIndex], spec);
-    int lastVal = getVal(list[end],spec);
-
-    // O(1) logic checks to determine middle value
-    if (((firstVal > middleVal) && (firstVal < lastVal)) || ((firstVal > lastVal) && (firstVal < middleVal))) {
-        pivot = firstIndex;
-    }
-    else if (((middleVal > firstVal) && (middleVal < lastVal)) || ((middleVal > lastVal) && (middleVal < firstVal))) {
-        pivot = middleIndex;
-    }
-    else {
-        pivot = lastIndex;
-    }
+    // Adjusts bounds of partition for next call
+    LTEnd = LTPivot - 1;
+    GTStart = GTPivot + 1;
 }
