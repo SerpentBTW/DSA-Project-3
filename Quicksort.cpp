@@ -4,8 +4,6 @@
 
 #include "Quicksort.h"
 #include "GetVal.h"
-#include <cstdlib>
-#include <ctime>
 
 using namespace std;
 

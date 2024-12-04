@@ -15,8 +15,6 @@ using namespace std;
 
 void Quicksort(vector<Car*>& list, string spec);
 void QuicksortRecursive(vector<Car*>& list, int start, int end, string spec);
-int Partition(vector<Car*>& list, int start, int end, string spec);
-void FindMedianVal(vector<Car*>& list, int start, int end, string spec, int& pivot);
 
 void ThreeWayPartition(vector<Car*>& list, int start, int end, string spec, int& leftEnd, int& rightStart);
 
