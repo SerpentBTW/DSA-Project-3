@@ -68,6 +68,7 @@ int main(){
 
     int numLines = 0;
     int specInt = 0;
+    int printOrder = 0;
     string spec;
 
         cout << "Welcome to MotorMatch" << endl;
@@ -99,6 +100,12 @@ int main(){
             cout << "Invalid input, rerun program with compatible inputs.";
             return 0;
         }
+        cout << "Ascending or Descending order? (Input number)" << endl;
+        cout << "1. Ascending" << endl;
+        cout << "2. Descending" << endl;
+        cin >> printOrder;
+        cout << endl;
+
         if (specInt == 1 || specInt == 4) {
             auto ShellStart = std::chrono::high_resolution_clock::now();
             ShellSort(shellData, spec);
@@ -110,13 +117,38 @@ int main(){
             auto ShellDuration = std::chrono::duration_cast<std::chrono::milliseconds>(ShellStop - ShellStart);
             auto HeapDuration = std::chrono::duration_cast<std::chrono::milliseconds>(HeapStop - HeapStart);
             cout << "Shell Sort Execution Time: "<< ShellDuration.count() <<"  milliseconds"<< endl;
-            for (int i = 0; i < numLines; i++) {
-                cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() <<" | "<<shellData[i]->getModel() <<" | "<<"$"<<shellData[i]->getPrice() <<" | "<<shellData[i]->getMileage()<<" miles"<<" | "<<shellData[i]->getMpg()<<"mpg"<<endl;
+            cout << endl;
+            if (printOrder == 1) {
+                for (int i = 0; i < numLines; i++) {
+                    cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() << " | "
+                         << shellData[i]->getModel() << " | " << "$" << shellData[i]->getPrice() << " | "
+                         << shellData[i]->getMileage() << " miles" << " | " << shellData[i]->getMpg() << "mpg" << endl;
+                }
+                cout << "-----------------------------------------------------------------------" << endl;
+                cout << "Heap Sort Execution Time: " << HeapDuration.count() << " milliseconds" << endl;
+                cout << endl;
+                for (int i = 0; i < numLines; i++) {
+                    cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() << " | "
+                         << heapData[i]->getModel() << " | " << "$" << heapData[i]->getPrice() << " | "
+                         << heapData[i]->getMileage() << " miles" << " | " << heapData[i]->getMpg() << "mpg" << endl;
+                }
             }
-            cout << "-----------------------------------------------------------------------" << endl;
-            cout << "Heap Sort Execution Time: "<< HeapDuration.count() <<" milliseconds"<< endl;
-            for (int i = 0; i < numLines; i++) {
-                cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() <<" | "<<heapData[i]->getModel() <<" | "<<"$"<<heapData[i]->getPrice() <<" | "<<heapData[i]->getMileage()<<" miles"<<" | "<<heapData[i]->getMpg()<<"mpg"<<endl;
+            else if (printOrder == 2) {
+                cout << "Shell Sort Execution Time: " << ShellDuration.count() << "  milliseconds" << endl;
+                cout << endl;
+                for (int i = shellData.size() - 1;i > shellData.size() - numLines; i--) {
+                    cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() << " | "
+                         << shellData[i]->getModel() << " | " << "$" << shellData[i]->getPrice() << " | "
+                         << shellData[i]->getMileage() << " miles" << " | " << shellData[i]->getMpg() << "mpg" << endl;
+                }
+                cout << "-----------------------------------------------------------------------" << endl;
+                cout << "Heap Sort Execution Time: " << HeapDuration.count() << " milliseconds" << endl;
+                cout << endl;
+                for (int i = heapData.size() - 1;i > heapData.size() - numLines; i--) {
+                    cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() << " | "
+                         << heapData[i]->getModel() << " | " << "$" << heapData[i]->getPrice() << " | "
+                         << heapData[i]->getMileage() << " miles" << " | " << heapData[i]->getMpg() << "mpg" << endl;
+                }
             }
         }
         else {
@@ -133,19 +165,55 @@ int main(){
             auto QuickDuration = std::chrono::duration_cast<std::chrono::milliseconds>(QuickStop - QuickStart);
             auto ShellDuration = std::chrono::duration_cast<std::chrono::milliseconds>(ShellStop - ShellStart);
             auto HeapDuration = std::chrono::duration_cast<std::chrono::milliseconds>(HeapStop - HeapStart);
-            cout << "Quick Sort Execution Time: "<< QuickDuration.count() <<" milliseconds"<< endl;
-            for (int i = 0; i < numLines; i++) {
-                cout << quickData[i]->getYear() << " | " << quickData[i]->getMake() <<" | "<<quickData[i]->getModel() <<" | "<<"$"<<quickData[i]->getPrice() <<" | "<<quickData[i]->getMileage()<<" miles"<<" | "<<quickData[i]->getMpg()<<"mpg"<<endl;
+            if (printOrder == 1) {
+                cout << "Quick Sort Execution Time: " << QuickDuration.count() << " milliseconds" << endl;
+                cout << endl;
+                for (int i = 0; i < numLines; i++) {
+                    cout << quickData[i]->getYear() << " | " << quickData[i]->getMake() << " | "
+                         << quickData[i]->getModel() << " | " << "$" << quickData[i]->getPrice() << " | "
+                         << quickData[i]->getMileage() << " miles" << " | " << quickData[i]->getMpg() << "mpg" << endl;
+                }
+                cout << "-----------------------------------------------------------------------" << endl;
+                cout << "Shell Sort Execution Time: " << ShellDuration.count() << "  milliseconds" << endl;
+                cout << endl;
+                for (int i = 0; i < numLines; i++) {
+                    cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() << " | "
+                         << shellData[i]->getModel() << " | " << "$" << shellData[i]->getPrice() << " | "
+                         << shellData[i]->getMileage() << " miles" << " | " << shellData[i]->getMpg() << "mpg" << endl;
+                }
+                cout << "-----------------------------------------------------------------------" << endl;
+                cout << "Heap Sort Execution Time: " << HeapDuration.count() << " milliseconds" << endl;
+                cout << endl;
+                for (int i = 0; i < numLines; i++) {
+                    cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() << " | "
+                         << heapData[i]->getModel() << " | " << "$" << heapData[i]->getPrice() << " | "
+                         << heapData[i]->getMileage() << " miles" << " | " << heapData[i]->getMpg() << "mpg" << endl;
+                }
             }
-            cout << "-----------------------------------------------------------------------" << endl;
-            cout << "Shell Sort Execution Time: "<< ShellDuration.count() <<"  milliseconds"<< endl;
-            for (int i = 0; i < numLines; i++) {
-                cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() <<" | "<<shellData[i]->getModel() <<" | "<<"$"<<shellData[i]->getPrice() <<" | "<<shellData[i]->getMileage()<<" miles"<<" | "<<shellData[i]->getMpg()<<"mpg"<<endl;
-            }
-            cout << "-----------------------------------------------------------------------" << endl;
-            cout << "Heap Sort Execution Time: "<< HeapDuration.count() <<" milliseconds"<< endl;
-            for (int i = 0; i < numLines; i++) {
-                cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() <<" | "<<heapData[i]->getModel() <<" | "<<"$"<<heapData[i]->getPrice() <<" | "<<heapData[i]->getMileage()<<" miles"<<" | "<<heapData[i]->getMpg()<<"mpg"<<endl;
+            else if (printOrder == 2) {
+                cout << "Quick Sort Execution Time: " << QuickDuration.count() << " milliseconds" << endl;
+                cout << endl;
+                for (int i = quickData.size() - 1;i > quickData.size() - numLines; i--) {
+                    cout << quickData[i]->getYear() << " | " << quickData[i]->getMake() << " | "
+                         << quickData[i]->getModel() << " | " << "$" << quickData[i]->getPrice() << " | "
+                         << quickData[i]->getMileage() << " miles" << " | " << quickData[i]->getMpg() << "mpg" << endl;
+                }
+                cout << "-----------------------------------------------------------------------" << endl;
+                cout << "Shell Sort Execution Time: " << ShellDuration.count() << "  milliseconds" << endl;
+                cout << endl;
+                for (int i = shellData.size() - 1;i > shellData.size() - numLines; i--) {
+                    cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() << " | "
+                         << shellData[i]->getModel() << " | " << "$" << shellData[i]->getPrice() << " | "
+                         << shellData[i]->getMileage() << " miles" << " | " << shellData[i]->getMpg() << "mpg" << endl;
+                }
+                cout << "-----------------------------------------------------------------------" << endl;
+                cout << "Heap Sort Execution Time: " << HeapDuration.count() << " milliseconds" << endl;
+                cout << endl;
+                for (int i = heapData.size() - 1;i > heapData.size() - numLines; i--) {
+                    cout << heapData[i]->getYear() << " | " << heapData[i]->getMake() << " | "
+                         << heapData[i]->getModel() << " | " << "$" << heapData[i]->getPrice() << " | "
+                         << heapData[i]->getMileage() << " miles" << " | " << heapData[i]->getMpg() << "mpg" << endl;
+                }
             }
         }
     return 0;
