@@ -3,7 +3,7 @@
 //
 
 #include "GetVal.h"
-
+//Gets the field based on a spec given into the function adn the specific node given
 int getVal(Car* car, string& spec) {
     if (spec == "year")
         return car->getYear();

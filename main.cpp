@@ -15,14 +15,14 @@ int main(){
     string make,model,year,price,mileage,mpg,engine,transmission,drivetrain,fuelType,sellerName,sellerRating,accidents,oneOwner,personalUseOnly;
     bool accidentBool, oneOwnerBool, personalUseBool;
     string exterior_color, interior_color, driver_rating, driver_reviews, price_drop;
-
+    //Creates DataSet vector and opens the csv file
     vector<Car*> dataSet;
     ifstream in("data.csv", ios::in);
     string row;
     getline(in, row);
 
 
-
+    //Goes through csv file and puts all data into the Car objects.
     while(!in.eof()) {
         getline(in, row);
         stringstream s(row);
@@ -60,7 +60,7 @@ int main(){
         dataSet.push_back(carConstruct);
 
         }
-
+    //Copies dataset to be adjusted with each sorting algorithm.
     vector<Car*> quickData(dataSet);
     vector<Car*> shellData(dataSet);
     vector<Car*> heapData(dataSet);
@@ -70,7 +70,7 @@ int main(){
     int specInt = 0;
     int printOrder = 0;
     string spec;
-
+    //UI Starts
         cout << "Welcome to MotorMatch" << endl;
         cout << "---------------------------------------------------------" << endl;
 
@@ -108,7 +108,7 @@ int main(){
         cout << "2. Descending" << endl;
         cin >> printOrder;
         cout << endl;
-
+        //Starts each sorting algorithsm and records the time it takes for each algorithm to complete.
             auto QuickStart = std::chrono::high_resolution_clock::now();
             Quicksort(quickData, spec);
             auto QuickStop = std::chrono::high_resolution_clock::now();
@@ -122,6 +122,7 @@ int main(){
             auto QuickDuration = std::chrono::duration_cast<std::chrono::milliseconds>(QuickStop - QuickStart);
             auto ShellDuration = std::chrono::duration_cast<std::chrono::milliseconds>(ShellStop - ShellStart);
             auto HeapDuration = std::chrono::duration_cast<std::chrono::milliseconds>(HeapStop - HeapStart);
+            //Prints first n number of lines
             if (printOrder == 1) {
                 cout << "Quick Sort Execution Time: " << QuickDuration.count() << " milliseconds" << endl;
                 cout << endl;
@@ -152,6 +153,7 @@ int main(){
                 cout << "Shell Sort Execution Time: " << ShellDuration.count() << "  milliseconds" << endl;
                 cout << "Heap Sort Execution Time: " << HeapDuration.count() << " milliseconds" << endl;
             }
+            //Prints last n number of lines
             else if (printOrder == 2) {
                 cout << "Quick Sort Execution Time: " << QuickDuration.count() << " milliseconds" << endl;
                 cout << endl;
