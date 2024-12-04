@@ -80,10 +80,6 @@ int main(){
         cout << "3. Mileage" << endl;
         cout << "4. MPG" << endl;
         cin >> specInt;
-
-        cout << "How many lines would you like to output? (Input number)" << endl;
-        cin >> numLines;
-        //Converting ui selection to string for sorting parameters
         if (specInt == 1) {
             spec = "year";
         }
@@ -100,6 +96,13 @@ int main(){
             cout << "Invalid input, rerun program with compatible inputs.";
             return 0;
         }
+        cout << "How many lines would you like to output? (Input number)" << endl;
+        cin >> numLines;
+        if(numLines <= 0){
+            cout << "Invalid input, rerun program with compatible inputs.";
+            return 0;
+        }
+        //Converting ui selection to string for sorting parameters
         cout << "Ascending or Descending order? (Input number)" << endl;
         cout << "1. Ascending" << endl;
         cout << "2. Descending" << endl;
@@ -147,6 +150,10 @@ int main(){
                          << heapData[i]->getModel() << " | " << "$" << heapData[i]->getPrice() << " | "
                          << heapData[i]->getMileage() << " miles" << " | " << heapData[i]->getMpg() << "mpg" << endl;
                 }
+            }
+            else {
+                cout << "Invalid input, rerun program with compatible inputs.";
+                return 0;
             }
         }
         else {
@@ -212,6 +219,10 @@ int main(){
                          << heapData[i]->getModel() << " | " << "$" << heapData[i]->getPrice() << " | "
                          << heapData[i]->getMileage() << " miles" << " | " << heapData[i]->getMpg() << "mpg" << endl;
                 }
+            }
+            else {
+                cout << "Invalid input, rerun program with compatible inputs.";
+                return 0;
             }
         }
     return 0;
