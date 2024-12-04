@@ -116,8 +116,6 @@ int main(){
 
             auto ShellDuration = std::chrono::duration_cast<std::chrono::milliseconds>(ShellStop - ShellStart);
             auto HeapDuration = std::chrono::duration_cast<std::chrono::milliseconds>(HeapStop - HeapStart);
-            cout << "Shell Sort Execution Time: "<< ShellDuration.count() <<"  milliseconds"<< endl;
-            cout << endl;
             if (printOrder == 1) {
                 for (int i = 0; i < numLines; i++) {
                     cout << shellData[i]->getYear() << " | " << shellData[i]->getMake() << " | "
